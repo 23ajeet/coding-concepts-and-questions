@@ -1,0 +1,37 @@
+Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
+{
+    // Write your code here.
+
+    //brute force: store all elements of both list in an array, 
+    //sort the array, then convertArr2LL
+
+
+//optimal solution:
+
+Node<int>* temp1= first;
+Node<int>* temp2= second;
+Node<int>* dummyNode= new Node(-1);
+Node<int>* temp= dummyNode;
+while(temp1!=NULL&& temp2!=NULL){
+    if(temp1->data<temp2->data){
+        temp->next=temp1;
+        temp=temp1;
+        temp1= temp->next;
+    }
+    else {
+        temp->next=temp2;
+        temp=temp2;
+        temp2= temp->next;
+    }
+
+    if(temp1){
+        temp->next= temp1;
+    }
+    else temp->next= temp2;
+}
+
+return dummyNode->next;
+
+
+
+}
