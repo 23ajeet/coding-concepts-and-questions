@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+
+void solve(stack<int>& myStack, int x){
+
+    //base case
+    if(myStack.empty()){
+        myStack.push(x);
+        return;
+    }
+    //processing part
+    int num= myStack.top();
+    myStack.pop();
+
+    //recursive call
+    solve(myStack,x);
+
+    //add the poppped top element while returning from recursive call;
+    myStack.push(num);
+
+}
+
+
+stack<int> pushAtBottom(stack<int>& myStack, int x) 
+{
+    // Write your code here.
+    solve(myStack,x);
+    return myStack;
+}
+
+//happy happy happy
