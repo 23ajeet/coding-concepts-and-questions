@@ -1,0 +1,45 @@
+
+void solve(stack<int> &stack, int n){
+//base case
+    if(stack.empty()){
+        stack.push(n);
+        return;
+    }
+//processing part
+    int num= stack.top();
+    stack.pop();
+//recursive call;
+    solve(stack,n);
+//add the popped element while returning from recursive call;
+    stack.push(num);
+
+}
+
+void insertAtBottom(stack<int> &stack, int n){
+
+    solve(stack,n);
+
+}
+
+
+void reverseStack(stack<int> &stack) {
+    // Write your code here
+//base case
+    if(stack.empty()){
+        return;
+    }
+//processing part
+    int num= stack.top();
+    stack.pop();
+//recursive call;
+    reverseStack(stack);
+
+    insertAtBottom(stack,num);
+    
+}
+
+
+
+
+
+
