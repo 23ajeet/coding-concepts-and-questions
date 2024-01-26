@@ -1,0 +1,28 @@
+Problem Statement:
+
+Ayush is given a number ‘X’. He has been told that he has to find the first ‘X’ terms of the series 3 * ‘N’ + 2, which are not multiples of 4. Help Ayush to find it as he has not been able to answer.
+
+Example: Given an ‘X’ = 4. The output array/list which must be passed to Ayush will be [ 5, 11, 14, 17 ].
+
+//code
+#include <bits/stdc++.h> 
+#include <vector>
+
+vector < int > termsOfAP(int x) {
+    // Write your code here.
+    vector<int> v;
+    int i=1;
+    int count =0;
+    while(count<x){
+        int ans= 3*i+2;
+        if(ans%4!=0){
+            v.push_back(ans);
+            i++;
+            count++;
+            
+        }
+
+        else i++;
+    }
+    return v;
+}
