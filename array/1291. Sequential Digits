@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> sequentialDigits(int low, int high) {
+
+        vector<int> ans;
+
+//stoi means string to integer
+
+        string digit= "123456789";
+
+        int lowerBound = to_string(low).length(); //for low= 100 and 1000 lowerBound will be 3 and 4. Basically we are converting it to string and findingn its length
+        int higherBound = to_string(high).length(); //same concept as of above line
+//i is window size
+//let i=3, means window size is 3, then for j=0, we have digit="123", and j can be max 6 (j<10-3) for i digit max = "789" for i=3
+
+        for (int i=lowerBound; i<=higherBound; i++){
+            for (int j=0; j<10-i; j++){
+                int num = stoi(digit.substr(j,i));
+
+                if(low<=num&& num<=high){
+                    ans.push_back(num);
+                }
+            }
+        }
+        return ans;
+
+
+        
+    }
+};
