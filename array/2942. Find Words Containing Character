@@ -1,0 +1,23 @@
+// #include<string>
+class Solution {
+public:
+    vector<int> findWordsContaining(vector<string>& words, char x) {
+        vector<int> ans;
+        
+//first for loop to get iterate every string of array
+
+        for(int i=0; i<words.size(); i++){
+            //second for loop to get every char of every particular string
+         for(int j=0; j<words[i].length(); j++){
+             if(words[i][j]==x){
+                 ans.push_back(i);
+                 break; //to break from current string if char is found
+             }
+         }
+
+
+        }
+        return ans;
+        
+    }
+};
