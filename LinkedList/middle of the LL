@@ -1,0 +1,53 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+//method1
+    //1 find the length of LL(n)
+    //2 find n/2 +1 th node , that will be middle of LL
+
+    // ListNode* temp= head;
+    // int cnt= 0;
+    // while(temp){
+    //     cnt++;
+    //     temp= temp->next;
+    // }
+
+    // int k= cnt/2 +1;
+    // temp= head;
+    // while(temp){
+    //     k--;
+    //     if(k==0){
+    //         break;
+    //     }
+    //     temp= temp->next;
+    // }
+    // return temp;
+    
+    //method 2
+    //slow and fast pointer
+
+    //slow= slow+1;
+   // fast= fast+2;//the moment fast reaches last node, that is when you stop
+
+   ListNode* slow= head;
+   ListNode* fast= head;
+   while(fast && fast->next){
+       slow= slow->next;
+       fast= fast->next->next;
+   }
+   return slow;
+
+
+        
+    }
+};
