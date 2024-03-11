@@ -1,0 +1,134 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h> 
+using namespace std; 
+
+struct Node
+{
+    int data;
+    struct Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+
+    //function to construct a LL
+    Node* constructLL(vector<int>& arr) {
+    
+    // Write your code here
+    Node* head = new Node(arr[0]);
+    Node* mover = head;
+    for(int i=1; i<arr.size(); i++){
+        Node* temp = new Node(arr[i]);
+        mover->next=temp;
+        mover=temp;
+    }
+    return head;
+}
+
+//function to remove head
+Node* removeHead(Node* head){
+    if(head==NULL){
+        return head;
+    }
+    Node* temp= head;
+    head= head->next;
+    delete temp;
+    return head;
+}
+
+//to print LL
+void print(Node* head){
+    while(head){
+        cout<<head->data<<endl;
+        head= head->next;
+    }
+}
+
+Node* removeTail(Node* head){
+    if(head==NULL || head->next==NULL){
+        return NULL;
+    }
+    Node* temp = head;
+    while(temp->next->next){
+        temp= temp->next;
+    }
+    delete temp->next;
+    temp->next = nullptr;
+    return head;
+}
+Node* removek(Node* head, int k){
+    //if head is null
+    if(head==NULL) return head;
+    //if k=1, then remove head of ll
+    if(k==1){
+        Node* temp= head;
+        head= head->next;
+        delete temp;
+        return head;
+    }
+    //for any other value k
+    int cnt=0;
+    Node* temp= head;
+    Node* prev= NULL;
+    while(temp){
+        cnt++;
+        if(cnt==k){
+            prev->next= prev->next->next;
+            delete temp;
+            break;
+        }
+        prev= temp;
+        temp= temp->next;
+    }
+    return head;
+}
+//delete the node with given vvalue
+Node* deleteVal(Node* head, int val){
+    if( head==NULL) return head;
+        if(head->data==val){
+        Node* temp= head;
+        head= head->next;
+        delete temp;
+        return head;
+    }
+
+    Node* temp= head;
+    Node* prev= NULL;
+    while(temp){
+        
+        if(temp->data==val){
+            prev->next= prev->next->next;
+            delete temp;
+            break;
+        }
+        prev= temp;
+        temp= temp->next;
+    }
+    return head;
+}
+
+// } Driver Code Ends
+/* Link list node */
+/*
+struct Node
+{
+    int data;
+    Node* next;
+    Node(int x) {  data = x;  next = NULL; }
+}; */
+
+//{ Driver Code Starts.
+
+int main() 
+{
+    vector<int> arr= {1,2,12,57,123,111,178};
+    Node* head= constructLL(arr);
+    // head= removeHead(head);
+    // head= removeTail(head);
+    // head= removek(head,90);
+    head= deleteVal( head, 178);
+    print(head);
+}
+// } Driver Code Ends
